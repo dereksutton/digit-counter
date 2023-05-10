@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Digit Counter</h1>
+    <label for="start">Start:</label>
+    <input type="number" id="start" name="start">
+    <label for="end">End:</label>
+    <input type="number" id="end" name="end">
+    <button onclick="getDigitCounts()">Count Digits</button>
+
+    <div id="results"></div>
+
+    <script>
+        function countDigits(start, end) {
+            let digitCounts = Array(10).fill(0);
+
+            for (let i = start; i <= end; i++) {
+                let numStr = i.toString();
+                for (let char of numStr) {
+                    digitCounts[parseInt(char)]++;
+                }
+            }
+
+            return digitCounts;
+        }
+
+        function getDigitCounts() {
+            let start = document.getElementById('start').value;
+            let end = document.getElementById('end').value;
+            let counts = countDigits(parseInt(start), parseInt(end));
+
+            let resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            for (let i = 0; i < counts.length; i++) {
+                resultsDiv.innerHTML += 'Digit ' + i + ': ' + counts[i] + '<br>';
+            }
+        }
+    </script>
+</body>
+</html>
